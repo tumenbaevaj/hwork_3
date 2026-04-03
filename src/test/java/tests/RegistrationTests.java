@@ -43,4 +43,19 @@ public class RegistrationTests extends TestBase{
         $(".modal-content").shouldHave(text("Bishkek, Kyrgyzstan"));
         $(".modal-content").shouldHave(text("NCR Delhi"));
     }
+
+    @Test
+    void successfulRequiredFieldsRegistrationTest() {
+        open("/automation-practice-form");
+
+        $("[id=firstName]").setValue("Jibek");
+        $("[id=lastName]").setValue("Tumenbaeva");
+        $("[id=genterWrapper]").$(byText("Female")).click();
+        $("[id=userNumber]").setValue("0555667667");
+        $("[id=submit]").click();
+
+        $(".modal-content").shouldHave(text("Jibek Tumenbaeva"));
+        $(".modal-content").shouldHave(text("Female"));
+        $(".modal-content").shouldHave(text("0555667667"));
+    }
 }
