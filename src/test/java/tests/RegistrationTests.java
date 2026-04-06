@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class RegistrationTests extends TestBase{
+public class RegistrationTests extends TestBase {
 
     @Test
     void successfulFullRegistrationTest() {
@@ -61,7 +61,7 @@ public class RegistrationTests extends TestBase{
     }
 
     @Test
-    void EmptyRegistrationTest() {
+    void emptyRegistrationTest() {
         open("/automation-practice-form");
 
         $("[id=submit]").click();
@@ -69,7 +69,7 @@ public class RegistrationTests extends TestBase{
     }
 
     @Test
-    void RegistrationWithoutFirstNameTest() {
+    void registrationWithoutFirstNameTest() {
         open("/automation-practice-form");
 
         $("[id=lastName]").setValue("Tumenbaeva");
@@ -81,7 +81,7 @@ public class RegistrationTests extends TestBase{
     }
 
     @Test
-    void RegistrationWithShortPhoneTest() {
+    void registrationWithShortPhoneTest() {
         open("/automation-practice-form");
 
         $("[id=firstName]").setValue("Jibek");

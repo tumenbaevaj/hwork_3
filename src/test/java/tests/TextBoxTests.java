@@ -23,6 +23,7 @@ public class TextBoxTests extends TestBase {
         $("[id=output] [id=currentAddress]").shouldHave(text("66 Karalaev street, Bishkek, KG"));
         $("[id=output] [id=permanentAddress]").shouldHave(text("3 Matrosov street, Bishkek, KG"));
     }
+
     @Test
     void minimalTextBoxTest() {
         open("/text-box");
@@ -32,6 +33,7 @@ public class TextBoxTests extends TestBase {
 
         $("[id=output]").shouldHave(text("Jibek"));
     }
+
     @Test
     void textBoxInvalidEmailTest() {
         open("/text-box");
