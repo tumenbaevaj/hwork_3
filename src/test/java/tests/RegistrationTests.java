@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -57,5 +58,38 @@ public class RegistrationTests extends TestBase{
         $(".modal-content").shouldHave(text("Jibek Tumenbaeva"));
         $(".modal-content").shouldHave(text("Female"));
         $(".modal-content").shouldHave(text("0555667667"));
+    }
+
+    @Test
+    void EmptyRegistrationTest() {
+        open("/automation-practice-form");
+
+        $("[id=submit]").click();
+        $(".modal-content").shouldNot(exist);
+    }
+
+    @Test
+    void RegistrationWithoutFirstNameTest() {
+        open("/automation-practice-form");
+
+        $("[id=lastName]").setValue("Tumenbaeva");
+        $("[id=genterWrapper]").$(byText("Female")).click();
+        $("[id=userNumber]").setValue("0555667667");
+        $("[id=submit]").click();
+
+        $(".modal-content").shouldNot(exist);
+    }
+
+    @Test
+    void RegistrationWithShortPhoneTest() {
+        open("/automation-practice-form");
+
+        $("[id=firstName]").setValue("Jibek");
+        $("[id=lastName]").setValue("Tumenbaeva");
+        $("[id=genterWrapper]").$(byText("Female")).click();
+        $("[id=userNumber]").setValue("12345");
+        $("[id=submit]").click();
+
+        $(".modal-content").shouldNot(exist);
     }
 }
