@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -21,5 +22,24 @@ public class TextBoxTests extends TestBase {
         $("[id=output] [id=email]").shouldHave(text("johnsmith@gmail.com"));
         $("[id=output] [id=currentAddress]").shouldHave(text("66 Karalaev street, Bishkek, KG"));
         $("[id=output] [id=permanentAddress]").shouldHave(text("3 Matrosov street, Bishkek, KG"));
+    }
+    @Test
+    void minimalTextBoxTest() {
+        open("/text-box");
+
+        $("[id=userName]").setValue("Jibek");
+        $("[id=submit]").click();
+
+        $("[id=output]").shouldHave(text("Jibek"));
+    }
+    @Test
+    void textBoxInvalidEmailTest() {
+        open("/text-box");
+
+        $("[id=userName]").setValue("Jibek");
+        $("[id=userEmail]").setValue("invalid-email");
+        $("[id=submit]").click();
+
+        $("[id=userEmail]").shouldHave(cssClass("field-error"));
     }
 }
