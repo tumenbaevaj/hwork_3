@@ -12,36 +12,36 @@ public class TextBoxTests extends TestBase {
     @Test
     void successfulFillFormTest() {
         open("/text-box");
-        $("[id=userName]").setValue("John Smith");
-        $("[id=userEmail]").setValue("johnsmith@gmail.com");
-        $("[id=currentAddress]").setValue("66 Karalaev street, Bishkek, KG");
-        $("[id=permanentAddress]").setValue("3 Matrosov street, Bishkek, KG");
-        $("[id=submit]").click();
+        $("#userName").setValue("John Smith");
+        $("#userEmail").setValue("johnsmith@gmail.com");
+        $("#currentAddress").setValue("66 Karalaev street, Bishkek, KG");
+        $("#permanentAddress").setValue("3 Matrosov street, Bishkek, KG");
+        $("#submit").click();
 
-        $("[id=output] [id=name]").shouldHave(text("John Smith"));
-        $("[id=output] [id=email]").shouldHave(text("johnsmith@gmail.com"));
-        $("[id=output] [id=currentAddress]").shouldHave(text("66 Karalaev street, Bishkek, KG"));
-        $("[id=output] [id=permanentAddress]").shouldHave(text("3 Matrosov street, Bishkek, KG"));
+        $("#output #name").shouldHave(text("John Smith"));
+        $("#output #email").shouldHave(text("johnsmith@gmail.com"));
+        $("#output #currentAddress").shouldHave(text("66 Karalaev street, Bishkek, KG"));
+        $("#output #permanentAddress").shouldHave(text("3 Matrosov street, Bishkek, KG"));
     }
 
     @Test
     void minimalTextBoxTest() {
         open("/text-box");
 
-        $("[id=userName]").setValue("Jibek");
-        $("[id=submit]").click();
+        $("#userName").setValue("Jibek");
+        $("#submit").click();
 
-        $("[id=output]").shouldHave(text("Jibek"));
+        $("#output").shouldHave(text("Jibek"));
     }
 
     @Test
     void textBoxInvalidEmailTest() {
         open("/text-box");
 
-        $("[id=userName]").setValue("Jibek");
-        $("[id=userEmail]").setValue("invalid-email");
-        $("[id=submit]").click();
+        $("#userName").setValue("Jibek");
+        $("#userEmail").setValue("invalid-email");
+        $("#submit").click();
 
-        $("[id=userEmail]").shouldHave(cssClass("field-error"));
+        $("#userEmail").shouldHave(cssClass("field-error"));
     }
 }

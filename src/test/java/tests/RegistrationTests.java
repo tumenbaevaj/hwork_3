@@ -14,24 +14,24 @@ public class RegistrationTests extends TestBase {
     void successfulFullRegistrationTest() {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Jibek");
-        $("[id=lastName]").setValue("Tumenbaeva");
-        $("[id=userEmail]").setValue("jibekt@gmail.com");
-        $("[id=genterWrapper]").$(byText("Female")).click();
-        $("[id=userNumber]").setValue("0555667667");
-        $("[id=dateOfBirthInput]").click();
+        $("#firstName").setValue("Jibek");
+        $("#lastName").setValue("Tumenbaeva");
+        $("#userEmail").setValue("jibekt@gmail.com");
+        $("#genterWrapper").$(byText("Female")).click();
+        $("#userNumber").setValue("0555667667");
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("June");
         $(".react-datepicker__year-select").selectOption("1988");
         $(".react-datepicker__month").$(byText("26")).click();
-        $("[id=subjectsInput]").setValue("Accounting").pressEnter();
-        $("[id=hobbiesWrapper]").$(byText("Sports")).click();
-        $("[id=uploadPicture]").uploadFromClasspath("img.jpg");
-        $("[id=currentAddress]").setValue("Bishkek, Kyrgyzstan");
-        $("[id=state]").click();
-        $("[id=stateCity-wrapper]").$(byText("NCR")).click();
-        $("[id=city]").click();
-        $("[id=stateCity-wrapper]").$(byText("Delhi")).click();
-        $("[id=submit]").click();
+        $("#subjectsInput").setValue("Accounting").pressEnter();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#uploadPicture").uploadFromClasspath("img.jpg");
+        $("#currentAddress").setValue("Bishkek, Kyrgyzstan");
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
+        $("#submit").click();
 
         $(".modal-content").shouldHave(text("Jibek Tumenbaeva"));
         $(".modal-content").shouldHave(text("jibekt@gmail.com"));
@@ -49,11 +49,11 @@ public class RegistrationTests extends TestBase {
     void successfulRequiredFieldsRegistrationTest() {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Jibek");
-        $("[id=lastName]").setValue("Tumenbaeva");
-        $("[id=genterWrapper]").$(byText("Female")).click();
-        $("[id=userNumber]").setValue("0555667667");
-        $("[id=submit]").click();
+        $("#firstName").setValue("Jibek");
+        $("#lastName").setValue("Tumenbaeva");
+        $("#genterWrapper").$(byText("Female")).click();
+        $("#userNumber").setValue("0555667667");
+        $("#submit").click();
 
         $(".modal-content").shouldHave(text("Jibek Tumenbaeva"));
         $(".modal-content").shouldHave(text("Female"));
@@ -64,7 +64,7 @@ public class RegistrationTests extends TestBase {
     void emptyRegistrationTest() {
         open("/automation-practice-form");
 
-        $("[id=submit]").click();
+        $("#submit").click();
         $(".modal-content").shouldNot(exist);
     }
 
@@ -72,10 +72,10 @@ public class RegistrationTests extends TestBase {
     void registrationWithoutFirstNameTest() {
         open("/automation-practice-form");
 
-        $("[id=lastName]").setValue("Tumenbaeva");
-        $("[id=genterWrapper]").$(byText("Female")).click();
-        $("[id=userNumber]").setValue("0555667667");
-        $("[id=submit]").click();
+        $("#lastName").setValue("Tumenbaeva");
+        $("#genterWrapper").$(byText("Female")).click();
+        $("#userNumber").setValue("0555667667");
+        $("#submit").click();
 
         $(".modal-content").shouldNot(exist);
     }
@@ -84,11 +84,11 @@ public class RegistrationTests extends TestBase {
     void registrationWithShortPhoneTest() {
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Jibek");
-        $("[id=lastName]").setValue("Tumenbaeva");
-        $("[id=genterWrapper]").$(byText("Female")).click();
-        $("[id=userNumber]").setValue("12345");
-        $("[id=submit]").click();
+        $("#firstName").setValue("Jibek");
+        $("#lastName").setValue("Tumenbaeva");
+        $("#genterWrapper").$(byText("Female")).click();
+        $("#userNumber").setValue("12345");
+        $("#submit").click();
 
         $(".modal-content").shouldNot(exist);
     }
