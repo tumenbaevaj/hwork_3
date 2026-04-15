@@ -5,14 +5,18 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationTests extends TestBase {
 
     @Test
     void successfulFullRegistrationTest() {
         open("/automation-practice-form");
+
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
 
         $("#firstName").setValue("Jibek");
         $("#lastName").setValue("Tumenbaeva");
@@ -49,6 +53,11 @@ public class RegistrationTests extends TestBase {
     void successfulRequiredFieldsRegistrationTest() {
         open("/automation-practice-form");
 
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
+
         $("#firstName").setValue("Jibek");
         $("#lastName").setValue("Tumenbaeva");
         $("#genterWrapper").$(byText("Female")).click();
@@ -64,6 +73,11 @@ public class RegistrationTests extends TestBase {
     void emptyRegistrationTest() {
         open("/automation-practice-form");
 
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
+
         $("#submit").click();
         $(".modal-content").shouldNot(exist);
     }
@@ -71,6 +85,11 @@ public class RegistrationTests extends TestBase {
     @Test
     void registrationWithoutFirstNameTest() {
         open("/automation-practice-form");
+
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
 
         $("#lastName").setValue("Tumenbaeva");
         $("#genterWrapper").$(byText("Female")).click();
@@ -83,6 +102,11 @@ public class RegistrationTests extends TestBase {
     @Test
     void registrationWithShortPhoneTest() {
         open("/automation-practice-form");
+
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
 
         $("#firstName").setValue("Jibek");
         $("#lastName").setValue("Tumenbaeva");

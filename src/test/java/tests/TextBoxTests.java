@@ -4,14 +4,19 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests extends TestBase {
 
     @Test
     void successfulFillFormTest() {
         open("/text-box");
+
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
+
         $("#userName").setValue("John Smith");
         $("#userEmail").setValue("johnsmith@gmail.com");
         $("#currentAddress").setValue("66 Karalaev street, Bishkek, KG");
@@ -28,6 +33,11 @@ public class TextBoxTests extends TestBase {
     void minimalTextBoxTest() {
         open("/text-box");
 
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
+
         $("#userName").setValue("Jibek");
         $("#submit").click();
 
@@ -37,6 +47,11 @@ public class TextBoxTests extends TestBase {
     @Test
     void textBoxInvalidEmailTest() {
         open("/text-box");
+
+        executeJavaScript("""
+                    document.getElementById('fixedban')?.remove();
+                    document.querySelector('footer')?.remove();
+                """);
 
         $("#userName").setValue("Jibek");
         $("#userEmail").setValue("invalid-email");
